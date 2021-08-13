@@ -7,7 +7,7 @@ data class Length(
     fun add(length: Length): Length {
         val convertedValue = length.convert(unit).value
         return Length(
-            convertedValue + this.value, this.unit
+            convertedValue + this.value, unit
         )
     }
 
@@ -15,5 +15,5 @@ data class Length(
 }
 
 enum class Unit(val scale: Double) {
-    Meter(100.0), Centimeter(1.0), Millimeter(0.1)
+    Meter(100.0), Centimeter(1.0), Millimeter(0.1), Kilograms(1000.0), Grams(1.0), Pounds(453.0)
 }

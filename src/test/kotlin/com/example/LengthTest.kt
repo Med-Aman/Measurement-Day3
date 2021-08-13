@@ -29,6 +29,18 @@ class LengthTest : StringSpec({
         Length(1.0, Unit.Millimeter).convert(Unit.Meter) shouldBe Length(0.001, Unit.Meter)
     }
 
+    "should convert kg into target unit" {
+        Length(1.0, Unit.Kilograms).convert(Unit.Grams) shouldBe Length(1000.0, Unit.Grams)
+        Length(1.0, Unit.Pounds).convert(Unit.Grams) shouldBe Length(453.0, Unit.Grams)
+        Length(1.0, Unit.Grams).convert(Unit.Grams) shouldBe Length(1.0, Unit.Grams)
+    }
 
+    "should add two similar weights Unit" {
+        Length(1.0, Unit.Kilograms).add(Length(1.0, Unit.Kilograms)) shouldBe Length(2.0, Unit.Kilograms)
+    }
 
+    "should add two different weight unit" {
+        Length(1.0, Unit.Kilograms).add(Length(100.0, Unit.Grams)) shouldBe Length(1.1, Unit.Kilograms)
+        Length(1.0, Unit.Kilograms).add(Length(1.0, Unit.Pounds)) shouldBe Length(1.453, Unit.Kilograms)
+    }
 })
