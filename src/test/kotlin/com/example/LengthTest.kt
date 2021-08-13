@@ -5,42 +5,42 @@ import io.kotest.matchers.shouldBe
 
 class LengthTest : StringSpec({
     "should add two length with same type and return it in first" {
-        Length(1.0, Unit.Meter).add(Length(2.0, Unit.Meter)) shouldBe Length(3.0, Unit.Meter)
+        Metric(1.0, Measure.Meter).add(Metric(2.0, Measure.Meter)) shouldBe Metric(3.0, Measure.Meter)
     }
 
     "should add two length with different type and return it in first" {
-        Length(1.0, Unit.Meter).add(Length(2.0, Unit.Centimeter)) shouldBe Length(1.02, Unit.Meter)
-        Length(1.0, Unit.Centimeter).add(Length(2.0, Unit.Millimeter)) shouldBe Length(1.2, Unit.Centimeter)
-        Length(1.0, Unit.Millimeter).add(Length(2.0, Unit.Meter)) shouldBe Length(2001.0, Unit.Millimeter)
+        Metric(1.0, Measure.Meter).add(Metric(2.0, Measure.Centimeter)) shouldBe Metric(1.02, Measure.Meter)
+        Metric(1.0, Measure.Centimeter).add(Metric(2.0, Measure.Millimeter)) shouldBe Metric(1.2, Measure.Centimeter)
+        Metric(1.0, Measure.Millimeter).add(Metric(2.0, Measure.Meter)) shouldBe Metric(2001.0, Measure.Millimeter)
     }
 
     "should convert meter into target unit" {
-        Length(1.0, Unit.Meter).convert(Unit.Centimeter) shouldBe Length(100.0, Unit.Centimeter)
-        Length(1.0, Unit.Meter).convert(Unit.Millimeter) shouldBe Length(1000.0, Unit.Millimeter)
+        Metric(1.0, Measure.Meter).convert(Measure.Centimeter) shouldBe Metric(100.0, Measure.Centimeter)
+        Metric(1.0, Measure.Meter).convert(Measure.Millimeter) shouldBe Metric(1000.0, Measure.Millimeter)
     }
 
     "should convert centimeter into target unit" {
-        Length(1.0, Unit.Centimeter).convert(Unit.Meter) shouldBe Length(0.01, Unit.Meter)
-        Length(1.0, Unit.Centimeter).convert(Unit.Millimeter) shouldBe Length(10.0, Unit.Millimeter)
+        Metric(1.0, Measure.Centimeter).convert(Measure.Meter) shouldBe Metric(0.01, Measure.Meter)
+        Metric(1.0, Measure.Centimeter).convert(Measure.Millimeter) shouldBe Metric(10.0, Measure.Millimeter)
     }
 
     "should convert millimeter into target unit" {
-        Length(1.0, Unit.Millimeter).convert(Unit.Centimeter) shouldBe Length(0.1, Unit.Centimeter)
-        Length(1.0, Unit.Millimeter).convert(Unit.Meter) shouldBe Length(0.001, Unit.Meter)
+        Metric(1.0, Measure.Millimeter).convert(Measure.Centimeter) shouldBe Metric(0.1, Measure.Centimeter)
+        Metric(1.0, Measure.Millimeter).convert(Measure.Meter) shouldBe Metric(0.001, Measure.Meter)
     }
 
     "should convert kg into target unit" {
-        Length(1.0, Unit.Kilograms).convert(Unit.Grams) shouldBe Length(1000.0, Unit.Grams)
-        Length(1.0, Unit.Pounds).convert(Unit.Grams) shouldBe Length(453.0, Unit.Grams)
-        Length(1.0, Unit.Grams).convert(Unit.Grams) shouldBe Length(1.0, Unit.Grams)
+        Metric(1.0, Weights.Kilograms).convert(Weights.Grams) shouldBe Metric(1000.0, Weights.Grams)
+        Metric(1.0, Weights.Pounds).convert(Weights.Grams) shouldBe Metric(453.0, Weights.Grams)
+        Metric(1.0, Weights.Grams).convert(Weights.Grams) shouldBe Metric(1.0, Weights.Grams)
     }
 
     "should add two similar weights Unit" {
-        Length(1.0, Unit.Kilograms).add(Length(1.0, Unit.Kilograms)) shouldBe Length(2.0, Unit.Kilograms)
+        Metric(1.0, Weights.Kilograms).add(Metric(1.0, Weights.Kilograms)) shouldBe Metric(2.0, Weights.Kilograms)
     }
 
     "should add two different weight unit" {
-        Length(1.0, Unit.Kilograms).add(Length(100.0, Unit.Grams)) shouldBe Length(1.1, Unit.Kilograms)
-        Length(1.0, Unit.Kilograms).add(Length(1.0, Unit.Pounds)) shouldBe Length(1.453, Unit.Kilograms)
+        Metric(1.0, Weights.Kilograms).add(Metric(100.0, Weights.Grams)) shouldBe Metric(1.1, Weights.Kilograms)
+        Metric(1.0, Weights.Kilograms).add(Metric(1.0, Weights.Pounds)) shouldBe Metric(1.453, Weights.Kilograms)
     }
 })
