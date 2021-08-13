@@ -1,5 +1,7 @@
 package com.example
 
+import com.sun.jdi.InvalidTypeException
+
 data class Metric(
     val value: Double,
     val unit: Unit
@@ -11,7 +13,13 @@ data class Metric(
         )
     }
 
-    fun convert(targetUnit: Unit) = Metric((value * unit.scale) / targetUnit.scale, targetUnit)
+    fun convert(targetUnit: Unit): Metric {
+
+        if (this.unit::class != targetUnit::class) {
+            throw InvalidTypeException("No")
+        }
+        return Metric((value * unit.scale) / targetUnit.scale, targetUnit)
+    }
 }
 
 /*
